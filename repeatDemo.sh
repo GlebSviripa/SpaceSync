@@ -1,7 +1,5 @@
+while true
+do
 ./demo.sh
-./demo.sh
-./demo.sh
-./demo.sh
-./demo.sh
-./demo.sh
-./repeatDemo.sh
+done
+
