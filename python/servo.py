@@ -14,26 +14,24 @@ p.start(2.5)# starting duty cycle ( it set the servo to 0 degree )
 
 url = "https://webpad.com.ua/servo"
 r = requests.post(url)
-print(r.status_code, r.reason)
-#sys.exit()
-
-values = range(11)
 
 try:
-       while True:
-           #read sarvar
-           if r.text == True:
-               for x in range(11):
-                 p.ChangeDutyCycle(control[x])
-                 time.sleep(0.03)
-                 print(x)
-               
-               for x in range(9,0,-1):
-                 p.ChangeDutyCycle(control[x])
-                 time.sleep(0.03)
-                 print(x)
-            else: 
-                time.sleep(0.1)
+    while True:
+        r = requests.post(url)
+        print(r.text)
+        if r.text == "true":
+            for x in range(11):
+                p.ChangeDutyCycle(control[x])
+                time.sleep(0.03)
+                print(x)
+
+            for x in range(9,0,-1):
+                p.ChangeDutyCycle(control[x])
+                time.sleep(0.03)
+                print(x)
+        else: 
+            time.sleep(0.1)
            
 except KeyboardInterrupt:
     GPIO.cleanup()
+
