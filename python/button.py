@@ -2,6 +2,7 @@
 import requests
 import socket
 import RPi.GPIO as GPIO
+import os
 
 GPIO.setmode(GPIO.BOARD)
 
@@ -20,6 +21,9 @@ fqdn = socket.getfqdn()
 #print(IPAddr)
 #print(fqdn)
 
+on = 'echo 1 | sudo tee /sys/class/leds/led1/brightness'
+off = 'echo 0 | sudo tee /sys/class/leds/led1/brightness'
+
 while True:
     buttonState = GPIO.input(buttonPin)
     if buttonState != lastState:
@@ -28,10 +32,12 @@ while True:
             print("false")
             r = requests.post(url, data={'id': id, 'status': "false"})
             print(r.status_code, r.reason)
+            os.system(off)
         else:
             print("true")
             r = requests.post(url, data={'id': id, 'status': "true"})
             print(r.status_code, r.reason)
+            os.system(on)
         lastState = buttonState
 
 
