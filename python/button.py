@@ -24,7 +24,7 @@ while True:
     buttonState = GPIO.input(buttonPin)
     if buttonState != lastState:
         print(buttonState)
-        if buttonState == False:
+        if buttonState == True:
             print("false")
             r = requests.post(url, data={'id': id, 'status': "false"})
             print(r.status_code, r.reason)
