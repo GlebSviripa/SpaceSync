@@ -17,8 +17,8 @@ ip = "first"
 hostname = socket.gethostname()
 IPAddr = socket.gethostbyname(hostname)
 fqdn = socket.getfqdn()
-print(IPAddr)
-print(fqdn)
+#print(IPAddr)
+#print(fqdn)
 
 while True:
     buttonState = GPIO.input(buttonPin)
